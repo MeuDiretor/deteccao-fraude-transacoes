@@ -1,0 +1,188 @@
+{
+  "source": {
+    "url": "https://storage.googleapis.com/download.tensorflow.org/data/creditcard.csv",
+    "raw_rows": 284807,
+    "rows_after_deduplication": 283726,
+    "duplicates_removed": 1081,
+    "raw_frauds": 492,
+    "raw_fraud_fraction": 0.001727485630620034,
+    "sha256_cache": "76274b691b16a6c49d3f159c883398e03ccd6d1ee12d9d8ee38f4b4b98551a89"
+  },
+  "splits": {
+    "train": 170235,
+    "validation": 56745,
+    "test": 56746
+  },
+  "selection": "validation recall, precision tie-break; thresholds 0.5 and 0.3",
+  "grid_best_params": {
+    "model__C": 0.1
+  },
+  "grid_recall": 0.8904441955953714,
+  "validation": [
+    {
+      "modelo": "Logistica",
+      "limiar": 0.5,
+      "recall": 0.9042553191489362,
+      "precisao": 0.05329153605015674,
+      "f1": 0.10065127294256956,
+      "acuracia": 0.9732311216847299,
+      "average_precision": 0.7897475579346832,
+      "roc_auc": 0.9801073913926892
+    },
+    {
+      "modelo": "Logistica",
+      "limiar": 0.3,
+      "recall": 0.9148936170212766,
+      "precisao": 0.02652683528685996,
+      "f1": 0.05155875299760192,
+      "acuracia": 0.9442417834170411,
+      "average_precision": 0.7897475579346832,
+      "roc_auc": 0.9801073913926892
+    },
+    {
+      "modelo": "RandomForest",
+      "limiar": 0.5,
+      "recall": 0.851063829787234,
+      "precisao": 0.8247422680412371,
+      "f1": 0.837696335078534,
+      "acuracia": 0.9994536963609129,
+      "average_precision": 0.8595941520736893,
+      "roc_auc": 0.9672617560975243
+    },
+    {
+      "modelo": "RandomForest",
+      "limiar": 0.3,
+      "recall": 0.8829787234042553,
+      "precisao": 0.6535433070866141,
+      "f1": 0.751131221719457,
+      "acuracia": 0.9990307516080712,
+      "average_precision": 0.8595941520736893,
+      "roc_auc": 0.9672617560975243
+    },
+    {
+      "modelo": "XGBoost",
+      "limiar": 0.5,
+      "recall": 0.8723404255319149,
+      "precisao": 0.7130434782608696,
+      "f1": 0.784688995215311,
+      "acuracia": 0.9992069785884219,
+      "average_precision": 0.8749012425519124,
+      "roc_auc": 0.9739170065916849
+    },
+    {
+      "modelo": "XGBoost",
+      "limiar": 0.3,
+      "recall": 0.8829787234042553,
+      "precisao": 0.5220125786163522,
+      "f1": 0.6561264822134387,
+      "acuracia": 0.998466825270949,
+      "average_precision": 0.8749012425519124,
+      "roc_auc": 0.9739170065916849
+    }
+  ],
+  "test": [
+    {
+      "modelo": "Logistica",
+      "limiar": 0.5,
+      "recall": 0.8736842105263158,
+      "precisao": 0.04993983152827918,
+      "f1": 0.09447922595332954,
+      "acuracia": 0.97196278151764,
+      "average_precision": 0.6764939363800742,
+      "roc_auc": 0.9617346839234501
+    },
+    {
+      "modelo": "Logistica",
+      "limiar": 0.3,
+      "recall": 0.8736842105263158,
+      "precisao": 0.025382262996941896,
+      "f1": 0.049331352154531945,
+      "acuracia": 0.943625982448102,
+      "average_precision": 0.6764939363800742,
+      "roc_auc": 0.9617346839234501
+    },
+    {
+      "modelo": "RandomForest",
+      "limiar": 0.5,
+      "recall": 0.7684210526315789,
+      "precisao": 0.8488372093023255,
+      "f1": 0.8066298342541437,
+      "acuracia": 0.9993832164381631,
+      "average_precision": 0.7932104581807645,
+      "roc_auc": 0.9518665996512348
+    },
+    {
+      "modelo": "RandomForest",
+      "limiar": 0.3,
+      "recall": 0.8,
+      "precisao": 0.6666666666666666,
+      "f1": 0.7272727272727273,
+      "acuracia": 0.9989955239135798,
+      "average_precision": 0.7932104581807645,
+      "roc_auc": 0.9518665996512348
+    },
+    {
+      "modelo": "XGBoost",
+      "limiar": 0.5,
+      "recall": 0.8,
+      "precisao": 0.6785714285714286,
+      "f1": 0.7342995169082126,
+      "acuracia": 0.9990307686885419,
+      "average_precision": 0.8038094282117575,
+      "roc_auc": 0.9696475836818043
+    },
+    {
+      "modelo": "XGBoost",
+      "limiar": 0.3,
+      "recall": 0.8315789473684211,
+      "precisao": 0.5197368421052632,
+      "f1": 0.6396761133603239,
+      "acuracia": 0.998431607514186,
+      "average_precision": 0.8038094282117575,
+      "roc_auc": 0.9696475836818043
+    }
+  ],
+  "selected": {
+    "modelo": "Logistica",
+    "limiar": 0.3,
+    "recall": 0.8736842105263158,
+    "precisao": 0.025382262996941896,
+    "f1": 0.049331352154531945,
+    "acuracia": 0.943625982448102,
+    "average_precision": 0.6764939363800742,
+    "roc_auc": 0.9617346839234501
+  },
+  "confusion_matrix": [
+    [
+      53464,
+      3187
+    ],
+    [
+      12,
+      83
+    ]
+  ],
+  "baseline": {
+    "acuracia": 0.9983258731892997,
+    "recall": 0.0,
+    "fraudes_detectadas": 0
+  },
+  "shap": {
+    "model": "Logistica",
+    "rows": 40,
+    "scope": "40 highest test scores; not representative of all transactions",
+    "top_features": {
+      "V14": 14.112147890114652,
+      "V12": 11.67073234249691,
+      "V10": 10.980536627331182,
+      "V17": 9.748367806245039,
+      "V4": 6.673239632689503,
+      "V16": 3.9960445456617335,
+      "V1": 3.276143037296367,
+      "V8": 2.8538131140428105,
+      "V9": 2.843866480301049,
+      "V2": 1.984237749692817
+    },
+    "local_score": 1.0
+  }
+}
