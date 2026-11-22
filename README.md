@@ -1,12 +1,12 @@
 # Detecção de fraude em transações com Python
 
-Projeto educacional da Formação Python for Data Analytics (DIO), implementado com assistência de IA para Felipe. Código original; nenhuma alegação de realização pessoal sem assistência. Não é um sistema aprovado para decisões financeiras reais.
+Implementei uma comparação de modelos para identificar transações anômalas em uma base pública anonimizada. O notebook registra preparação dos dados, seleção de limiar, métricas e explicações das previsões. Não é um sistema aprovado para decisões financeiras reais.
 
 [Notebook executado](deteccao-fraude.ipynb) · [Métricas completas](resultados/metricas.json) · [Validação](validacao.md) · [Requisitos observados](requisitos.md)
 
 ## Problema e dados
 
-A base pública indicada pela DIO tem 284.807 transações, 492 fraudes (0,17275%). Um baseline que sempre prevê normal pode ultrapassar 99% de acurácia com recall zero da fraude. Por isso comparamos recall, precisão e F1 da classe positiva, além de average precision e ROC AUC.
+A base pública analisada tem 284.807 transações, 492 fraudes (0,17275%). Um baseline que sempre prevê normal pode ultrapassar 99% de acurácia com recall zero da fraude. Por isso comparamos recall, precisão e F1 da classe positiva, além de average precision e ROC AUC.
 
 Origem: https://storage.googleapis.com/download.tensorflow.org/data/creditcard.csv . O CSV é lido desse link no primeiro uso e mantido somente em cache local ignorado pelo Git. Não é distribuído no repositório. Dataset público anonimizado, sem dados de clientes MeuDiretor. V1–V28 são componentes PCA; não lhes atribuímos significados de negócio.
 
@@ -27,7 +27,7 @@ Resultados **no teste reservado**, após congelar a escolha:
 | XGBoost | 0,5 | 80,00% | 67,86% | 0,7343 |
 | XGBoost | 0,3 | 83,16% | 51,97% | 0,6397 |
 
-A regra de recall na validação selecionou **logística, limiar 0,3** (recall de validação 91,49%). No teste detectou 83 de 95 fraudes, perdeu 12 e marcou 3.187 transações normais como fraude. **A precisão de 2,54% torna essa escolha inadequada para uso automático real.** A otimização unilateral de recall é uma demonstração do desafio, não recomendação operacional. O limiar 0,3 não melhorou recall no teste frente a 0,5, e elevou falsos positivos; isso é explicitado, sem trocar a seleção depois de observar o teste.
+A regra de recall na validação selecionou **logística, limiar 0,3** (recall de validação 91,49%). No teste detectou 83 de 95 fraudes, perdeu 12 e marcou 3.187 transações normais como fraude. **A precisão de 2,54% torna essa escolha inadequada para uso automático real.** A otimização unilateral de recall expõe um compromisso entre sensibilidade e falsos positivos; não é recomendação operacional. O limiar 0,3 não melhorou recall no teste frente a 0,5, e elevou falsos positivos; isso é explicitado, sem trocar a seleção depois de observar o teste.
 
 ![Curvas ROC e precisão-recall](resultados/curvas.svg)
 
@@ -55,6 +55,6 @@ No Linux/macOS, use `.venv/bin/python`. Também é possível abrir o notebook e 
 
 ## Diferenças e limites
 
-Além do roteiro da Expert, incluímos deduplicação antes da divisão, validação independente, prevenção de vazamento no scaler/CV, baseline explícito e conferência aritmética das métricas pela matriz. Não usamos oversampling; pesos de classe são o tratamento principal de desbalanceamento. Busca de hiperparâmetros é pequena e restrita à logística, com parâmetros dos outros modelos fixos e inspecionáveis.
+Incluí deduplicação antes da divisão, validação independente, prevenção de vazamento no scaler/CV, baseline explícito e conferência aritmética das métricas pela matriz. Não usamos oversampling; pesos de classe são o tratamento principal de desbalanceamento. Busca de hiperparâmetros é pequena e restrita à logística, com parâmetros dos outros modelos fixos e inspecionáveis.
 
-Uma divisão aleatória não mede deriva temporal nem generalização a instituições ou períodos diferentes. Poucas fraudes tornam as métricas sensíveis ao split; não apresentamos intervalos de confiança ou custos reais. Critérios de precisão mínima, calibração e validação temporal devem ser definidos em nova validação antes de qualquer uso real. Fonte do desafio e dados consultados em 22/11/2026; conclusão de atividade DIO é distinta da validade operacional de um modelo.
+Uma divisão aleatória não mede deriva temporal nem generalização a instituições ou períodos diferentes. Poucas fraudes tornam as métricas sensíveis ao split; não apresentamos intervalos de confiança ou custos reais. Critérios de precisão mínima, calibração e validação temporal devem ser definidos em nova validação antes de qualquer uso real. Dados consultados em22/11/2026. Os resultados experimentais não substituem validação operacional.

@@ -1,4 +1,4 @@
-"""Gera e executa o notebook educacional, mantendo todas as células inspecionáveis."""
+"""Gera e executa o notebook de análise, mantendo todas as células inspecionáveis."""
 from pathlib import Path
 import argparse
 import nbformat as nbf
@@ -11,9 +11,9 @@ def code(text): cells.append(nbf.v4.new_code_cell(text.strip()))
 
 md('''# Detecção de anomalias em transações
 ## Contexto e método
-Projeto educacional da Formação Python for Data Analytics, DIO. Consulta ao enunciado: 22/11/2026.
+Comparação de modelos para identificar transações anômalas. Dados consultados em22/11/2026.
 Dados públicos anonimizados: https://storage.googleapis.com/download.tensorflow.org/data/creditcard.csv .
-Sem dados de clientes, credenciais ou uso em produção. Implementação original com assistência de IA declarada.
+Sem dados de clientes, credenciais ou uso em produção.
 
 **Pergunta:** como detectar fraudes raras sem confundir alta acurácia com utilidade?
 Compararemos regressão logística, Random Forest e XGBoost, com recall, precisão, F1 e curvas ROC/PR.
